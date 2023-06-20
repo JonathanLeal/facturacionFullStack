@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
-class ClienteController extends Controller
+class ProductoController extends Controller
 {
     public function obtenerProductos(){
         $productos = Producto::all();

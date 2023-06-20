@@ -6,13 +6,13 @@ var idProducto = null;
 
 function llenarTabla() {
     $.ajax({
-        url: "http://127.0.0.1:8000/producto/list",
+        url: "http://127.0.0.1:8000/productos/list",
         method: "GET",
         dataType: "JSON",
         success: function(response){
             console.log(response);
-            $('#tabla-producto tbody').empty();
-            $.each(response, function (index, producto) {
+            $('#tabla-productos tbody').empty();
+            $.each(response, function (index, cliente) {
                 var fila = "<tr>" +
                         "<td>" + cliente.codProducto + "</td>" +
                         "<td>" + cliente.nombre + "</td>" +
@@ -20,10 +20,10 @@ function llenarTabla() {
                         "<td>" + cliente.stockMinimo + "</td>" +
                         "<td>" + cliente.stockActual + "</td>" +
                         "<td>" + cliente.codBarra + "</td>" +
-                        "<td><button type='button' class='btn btn-info' onclick=seleccionar("+producto.codProducto+") data-bs-toggle='modal' data-bs-target='#productosModal'>Editar</button></td>" +
-                        "<td><button type='button' class='btn btn-danger' onclick=eliminar("+producto.codProducto+")>Eliminar</button></td>" +
+                        "<td><button type='button' class='btn btn-info' onclick=seleccionar("+cliente.codProducto+") data-bs-toggle='modal' data-bs-target='#productosModal'>Editar</button></td>" +
+                        "<td><button type='button' class='btn btn-danger' onclick=eliminar("+cliente.codProducto+")>Eliminar</button></td>" +
                         "</tr>"
-                $("#tabla-clientes").append(fila);
+                $("#tabla-productos").append(fila);
             })
         },
         error: function(error){

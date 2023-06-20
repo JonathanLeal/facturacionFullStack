@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProductoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,8 +28,8 @@ Route::post('clientes/update', [ClienteController::class, 'editar']);
 Route::get('/Productos', function () {
     return view('Producto');
 });
-Route::get('productos/list', [ClienteController::class, 'obtenerProducto']);
-Route::get('productos/{codCliente}', [ClienteController::class, 'obtenerProducto']);
-Route::post('productos/save', [ClienteController::class, 'guardarProducto']);
-Route::post('productos/delete/{codCliente}', [ClienteController::class, 'eliminar']);
-Route::post('productos/update', [ClienteController::class, 'editar']);
+Route::get('productos/list', [ProductoController::class, 'obtenerProductos']);
+Route::get('productos/{codCliente}', [ProductoController::class, 'obtenerProducto']);
+Route::post('productos/save', [ProductoController::class, 'guardarProducto']);
+Route::post('productos/delete/{codCliente}', [ProductoController::class, 'eliminar']);
+Route::post('productos/update', [ProductoController::class, 'editar']);
