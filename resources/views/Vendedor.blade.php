@@ -46,8 +46,8 @@
                         <input type="number" class="form-control" id="stockActual" placeholder="stock actual del producto">
                       </div>
                     <div class="form-group">
-                      <label for="codigoBarra">Cod cliente:</label>
-                      <input type="text" class="form-control" id="codigoBarra" placeholder="Codigo de barra del producto">
+                      <label for="codBarra">Cod cliente:</label>
+                      <input type="text" class="form-control" id="codBarra" placeholder="Codigo de barra del producto">
                     </div>
                 </div>
                 <div class="modal-footer">
