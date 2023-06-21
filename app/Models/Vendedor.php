@@ -13,6 +13,10 @@ class Vendedor extends Model
     public $timestamps = false;
     public function facturas()
     {
-        return $this->hasMany(Factura::class, 'producto_id');
+        return $this->hasMany(Factura::class, 'codVendedor');
+    }
+    public function DetalleFactura()
+    {
+        return $this->hasMany(Factura::class, 'codVendedor');
     }
 }

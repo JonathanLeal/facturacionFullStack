@@ -15,4 +15,8 @@ class Cliente extends Model
     {
         return $this->hasMany(Factura::class, 'codCliente');
     }
+    public function DetalleFactura()
+    {
+        return $this->hasMany(Factura::class, 'codCliente');
+    }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\DetalleFacturaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\VendedorController;
 use Illuminate\Support\Facades\Route;
@@ -39,7 +40,7 @@ Route::post('productos/update', [ProductoController::class, 'editar']);
 Route::get('/Venta', function () {
     return view('Venta');
 });
-
+Route::get("venta/cliente/list", [DetalleFacturaController::class, 'listarClientes']);
 
 //vendedor
 Route::get('/Vendedor', function () {
