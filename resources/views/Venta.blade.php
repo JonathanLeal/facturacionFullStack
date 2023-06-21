@@ -25,7 +25,7 @@
                         </div>
                         <div class="row-lg-2">
                             <label for="codProducto">Producto:</label>
-                            <select name="codCliente" id="codCliente" class="form-control" style="width: 400px"></select>
+                            <select name="codProducto" id="codProducto" class="form-control" style="width: 400px"></select>
                         </div>
                         <div class="row-lg-2">
                             <label for="cantidad">Cantidad:</label>
@@ -35,15 +35,35 @@
                             <label for="fechaIngreso">Fecha:</label>
                             <input type="date" id="fechaIngreso">
                         </div>
+                        <div class="row-lg-2 mt-2">
+                            <button type="button" id="btnListar" class="btn btn-primary">Agregar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-
             
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>CodDetalle</th>
+                            <th>codFactura</th>
+                            <th>CodProducto</th>
+                            <th>CodBarra</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio venta</th>
+                            <th>Total</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.0/dist/sweetalert2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    <script src="{{asset('js/Factura.js')}}"></script>
+    <script src="{{asset('js/Detalle.js')}}"></script>
 </body>
 </html>

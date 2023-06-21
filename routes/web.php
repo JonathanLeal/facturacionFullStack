@@ -41,6 +41,9 @@ Route::get('/Venta', function () {
     return view('Venta');
 });
 Route::get("venta/cliente/list", [DetalleFacturaController::class, 'listarClientes']);
+Route::get("venta/producto/list", [DetalleFacturaController::class, 'listarProductos']);
+Route::post('venta/detalle/save', [DetalleFacturaController::class, 'listarDetalle']);
+Route::get('venta/listada', [DetalleFacturaController::class, 'ventaListada']);
 
 //vendedor
 Route::get('/Vendedor', function () {
