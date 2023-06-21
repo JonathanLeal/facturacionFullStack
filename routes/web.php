@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\VendedorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +39,10 @@ Route::post('productos/update', [ProductoController::class, 'editar']);
 Route::get('/Venta', function () {
     return view('Venta');
 });
+
+
+//vendedor
+Route::get('/Vendedor', function () {
+    return view('Vendedor');
+});
+Route::get('vendedores/list', [VendedorController::class, 'obtenerVendedores']);
