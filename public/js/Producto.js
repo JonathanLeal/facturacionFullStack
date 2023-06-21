@@ -12,16 +12,16 @@ function llenarTabla() {
         success: function(response){
             console.log(response);
             $('#tabla-productos tbody').empty();
-            $.each(response, function (index, cliente) {
+            $.each(response, function (index, producto) {
                 var fila = "<tr>" +
-                        "<td>" + cliente.codProducto + "</td>" +
-                        "<td>" + cliente.nombre + "</td>" +
-                        "<td>" + cliente.precioVenta + "</td>" +
-                        "<td>" + cliente.stockMinimo + "</td>" +
-                        "<td>" + cliente.stockActual + "</td>" +
-                        "<td>" + cliente.codBarra + "</td>" +
-                        "<td><button type='button' class='btn btn-info' onclick=seleccionar("+cliente.codProducto+") data-bs-toggle='modal' data-bs-target='#productosModal'>Editar</button></td>" +
-                        "<td><button type='button' class='btn btn-danger' onclick=eliminar("+cliente.codProducto+")>Eliminar</button></td>" +
+                        "<td>" + producto.codProducto + "</td>" +
+                        "<td>" + producto.nombreProducto + "</td>" +
+                        "<td>" + producto.precioVenta + "</td>" +
+                        "<td>" + producto.stockMinimo + "</td>" +
+                        "<td>" + producto.stockActual + "</td>" +
+                        "<td>" + producto.codBarra + "</td>" +
+                        "<td><button type='button' class='btn btn-info' onclick=seleccionar("+producto.codProducto+") data-bs-toggle='modal' data-bs-target='#productosModal'>Editar</button></td>" +
+                        "<td><button type='button' class='btn btn-danger' onclick=eliminar("+producto.codProducto+")>Eliminar</button></td>" +
                         "</tr>"
                 $("#tabla-productos").append(fila);
             })
@@ -34,7 +34,7 @@ function llenarTabla() {
 
 $("#btnGuardar").on("click", function(){
     var producto = {
-        nombre: $("#nombre").val(),
+        nombreProducto: $("#nombreProducto").val(),
         precioVenta: $("#precioVenta").val(),
         stockMinimo: $("#stockMinimo").val(),
         stockActual: $("#stockActual").val(),
@@ -76,7 +76,7 @@ function seleccionar(id) {
         dataType: "JSON",
         success: function (response) {
             console.log(response);
-            $("#nombre").val(response.nombre);
+            $("#nombreProducto").val(response.nombreProducto);
             $("#precioVenta").val(response.precioVenta);
             $("#stockMinimo").val(response.stockMinimo);
             $("#stockActual").val(response.stockActual);
@@ -89,7 +89,7 @@ function seleccionar(id) {
 }
 
 function vaciarModal() {
-    $("#nombre").val("");
+    $("#nombreProducto").val("");
     $("#precioVenta").val("");
     $("#stockMinimo").val("");
     $("#stockActual").val("");
@@ -132,14 +132,14 @@ function eliminar(id) {
 $("#btnEditar").on("click", function () {
     var editado = {
         codProducto: idProducto,
-        nombre: $("#nombre").val(),
+        nombreProducto: $("#nombreProducto").val(),
         precioVenta: $("#precioVenta").val(),
         stockMinimo: $("#stockMinimo").val(),
         stockActual: $("#stockActual").val(),
         codBarra: $("#codBarra").val()
     }
     $.ajax({
-        url: "http://127.0.0.1:8000/producto/update",
+        url: "http://127.0.0.1:8000/productos/update",
         method: "POST",
         dataType: "JSON",
         data: editado,

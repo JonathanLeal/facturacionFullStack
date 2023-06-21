@@ -27,11 +27,11 @@ class ProductoController extends Controller
 
     public function guardarProducto(Request $request){
         $validator = Validator::make($request->all(),[
-            'nombre' => 'required|string',
+            'nombreProducto' => 'required|string',
             'precioVenta' => 'required|numeric',
             'stockMinimo' => 'required|integer',
             'stockActual' => 'required|integer',
-            'codBarro' => 'required|string'
+            'codBarra' => 'required|string'
         ]);
 
         if ($validator->fails()) {
@@ -41,11 +41,16 @@ class ProductoController extends Controller
         DB::beginTransaction();
         try {
             $producto = new Producto();
-            $producto->nombre = $request->nombre;
+            $producto->nombreProducto = $request->nombreProducto;
             $producto->precioVenta = $request->precioVenta;
             $producto->stockMinimo = $request->stockMinimo;
             $producto->stockActual = $request->stockActual;
             $producto->codBarra = $request->codBarra;
+
+            if ($request->stockMinimo > $request->stockActual) {
+                return response()->json(['mensaje' => 'el stock minimo no puede ser menor al stock actual'], 422);
+            }
+
             $producto->save();
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -66,29 +71,35 @@ class ProductoController extends Controller
 
     public function editar(Request $request){
         $validator = Validator::make($request->all(),[
-            'codCliente' => 'integer',
-            'nombres' => 'required|string',
-            'apellidos' => 'required|string',
-            'direccion' => 'required|string',
-            'cod_cliente' => 'required|integer'
+            'codProducto' => 'integer',
+            'nombreProducto' => 'required|string',
+            'precioVenta' => 'required|numeric',
+            'stockMinimo' => 'required|integer',
+            'stockActual' => 'required|integer',
+            'codBarra' => 'required|string'
         ]);
 
         if ($validator->fails()) {
             return response()->json(['mensaje' => $validator->errors()], 404);
         }
 
-        $id = Producto::find($request->codCliente);
+        $id = Producto::find($request->codProducto);
         if (!$id) {
             return response()->json(['mensaje' => 'No se encontro el Producto'], 404);
         }
 
         DB::beginTransaction();
         try {
-            $id->nombre = $request->nombre;
+            $id->nombreProducto = $request->nombreProducto;
             $id->precioVenta = $request->precioVenta;
             $id->stockMinimo = $request->stockMinimo;
             $id->stockActual = $request->stockActual;
             $id->codBarra = $request->codBarra;
+
+            if ($request->stockMinimo > $request->stockActual) {
+                return response()->json(['mensaje' => 'el stock minimo no puede ser menor al stock actual'], 422);
+            }
+
             $id->save();
         } catch (\Throwable $th) {
             DB::rollBack();

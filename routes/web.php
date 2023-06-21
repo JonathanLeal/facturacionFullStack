@@ -29,7 +29,12 @@ Route::get('/Productos', function () {
     return view('Producto');
 });
 Route::get('productos/list', [ProductoController::class, 'obtenerProductos']);
-Route::get('productos/{codCliente}', [ProductoController::class, 'obtenerProducto']);
+Route::get('productos/{codProducto}', [ProductoController::class, 'obtenerProducto']);
 Route::post('productos/save', [ProductoController::class, 'guardarProducto']);
 Route::post('productos/delete/{codCliente}', [ProductoController::class, 'eliminar']);
 Route::post('productos/update', [ProductoController::class, 'editar']);
+
+//venta
+Route::get('/Venta', function () {
+    return view('Venta');
+});

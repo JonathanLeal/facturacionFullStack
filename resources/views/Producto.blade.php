@@ -30,8 +30,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                      <label for="nombre">Nombre:</label>
-                      <input type="text" class="form-control" id="nombre" placeholder="Nombres del producto">
+                      <label for="nombreProducto">Nombre:</label>
+                      <input type="text" class="form-control" id="nombreProducto" placeholder="Nombres del producto">
                     </div>
                     <div class="form-group">
                       <label for="precioVenta">Precio de venta:</label>
