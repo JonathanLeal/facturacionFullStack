@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use App\Models\DetalleFactura;
+use App\Models\Factura;
 use App\Models\Producto;
+use App\Models\Vendedor;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -30,7 +33,8 @@ class DetalleFacturaController extends Controller
         'codCliente' => 'required',
         'codProducto' => 'required',
         'cantidad' => 'required|integer',
-        'fechaIngreso' => 'required|date'
+        'numeroFactura' => 'required|integer',
+        'codVendedor' => 'required'
     ]);
 
     if ($validator->fails()) {
@@ -43,18 +47,32 @@ class DetalleFacturaController extends Controller
 
     $cliente = Cliente::where('codCliente', $request->codCliente)->first();
     if (!$cliente) {
-        return response()->json(['mensaje' => 'el cliente no fue encontrado']);
+        return response()->json(['mensaje' => 'el cliente no fue encontrado'], 404);
     }
 
     $producto = Producto::where('codProducto', $request->codProducto)->first();
     if (!$producto) {
-        return response()->json(['mensaje' => 'el producto no fue encontrado']);
+        return response()->json(['mensaje' => 'el producto no fue encontrado'], 404);
+    }
+
+    $vendedor = Vendedor::where('codVendedor', $request->codVendedor)->first();
+    if (!$vendedor) {
+        return response()->json(['mensaje' => 'el vendedor no fue encontrado', 404]);
     }
 
     DB::beginTransaction();
     try {
+        $factura = new Factura();
         $detalle = new DetalleFactura();
-        $detalle->codFactura = 1;
+
+        $factura->numeroFactura = $request->numeroFactura;
+        $factura->codVendedor = $vendedor->codVendedor;
+        $factura->codCliente = $request->codCliente;
+        $factura->totalVenta = $detalle->total += $detalle->total;
+        $factura->fechaRegistro = Carbon::now();
+        $factura->save();
+
+        $detalle->codFactura = $factura->codFactura;
         $detalle->codProducto = $producto->codProducto;
         $detalle->codBarra = $producto->codBarra;
         $detalle->nombreProducto = $producto->nombreProducto;

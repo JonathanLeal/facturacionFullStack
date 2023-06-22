@@ -36,7 +36,7 @@ $("#btnListar").on("click", function () {
     var codCliente = $("#codCliente").val();
     var codProducto = $("#codProducto").val();
     var cantidad = $("#cantidad").val();
-    var fechaIngreso = $("#fechaIngreso").val();
+    var fechaIngreso = $("#fechaRegistro").val();
 
     var listado = {
         codCliente: codCliente,
