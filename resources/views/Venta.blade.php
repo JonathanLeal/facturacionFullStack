@@ -24,6 +24,10 @@
                             <select name="codCliente" id="codCliente" class="form-control" style="width: 400px"></select>
                         </div>
                         <div class="row-lg-2">
+                            <label for="codVendedor">Vendedor:</label>
+                            <select name="codVendedor" id="codVendedor" class="form-control" style="width: 400px"></select>
+                        </div>
+                        <div class="row-lg-2">
                             <label for="codProducto">Producto:</label>
                             <select name="codProducto" id="codProducto" class="form-control" style="width: 400px"></select>
                         </div>
@@ -31,9 +35,9 @@
                             <label for="cantidad">Cantidad:</label>
                             <input type="number" name="cantidad" style="width: 200px" id="cantidad" class="form-control" placeholder="cantidad del producto">
                         </div>
-                        <div class="row-lg-2 mt-2">
-                            <label for="fechaRegistro">Fecha:</label>
-                            <input type="date" id="fechaRegistro">
+                        <div class="row-lg-2">
+                            <label for="numeroFactura">Factura:</label>
+                            <input type="number" name="numeroFactura" style="width: 200px" id="numeroFactura" class="form-control" placeholder="numero de la factura">
                         </div>
                         <div class="row-lg-2 mt-2">
                             <button type="button" id="btnListar" class="btn btn-primary">Agregar</button>
@@ -42,15 +46,13 @@
                 </div>
             </div>
             
-            <div class="table-responsive">
-                <table>
+            <div class="table-responsive mt-2">
+                <table class="table table-hover" id="tabla-listados">
                     <thead>
                         <tr>
-                            <th>CodDetalle</th>
-                            <th>codFactura</th>
-                            <th>CodProducto</th>
-                            <th>CodBarra</th>
+                            <th>Factura</th>
                             <th>Producto</th>
+                            <th>CodBarra</th>
                             <th>Cantidad</th>
                             <th>Precio venta</th>
                             <th>Total</th>

@@ -16,7 +16,7 @@ class DetalleFacturaController extends Controller
 {
    public function listarClientes(){
     $clientes = DB::table('cliente AS c')
-                    ->select('c.codCliente', 'c.nombres')
+                    ->select('c.codCliente', 'c.nombres', 'c.apellidos')
                     ->get();
     return response()->json($clientes);
    }
@@ -68,7 +68,7 @@ class DetalleFacturaController extends Controller
         $factura->numeroFactura = $request->numeroFactura;
         $factura->codVendedor = $vendedor->codVendedor;
         $factura->codCliente = $request->codCliente;
-        $factura->totalVenta = $detalle->total += $detalle->total;
+        $factura->totalVenta = 0;
         $factura->fechaRegistro = Carbon::now();
         $factura->save();
 
@@ -88,7 +88,19 @@ class DetalleFacturaController extends Controller
     return response()->json(['mensaje'=>'detalle listado con exito']);
    }
 
-   public function ventaListada(){
-     
+   public function ventaListada($numeroFactura){
+     $consulta = DB::table('detallefactura AS d')
+                ->join('factura AS f', 'd.codFactura', '=', 'f.codFactura')
+                ->select('f.numeroFactura', 'd.nombreProducto', 'd.codBarra', 'd.cantidad', 'd.precioVenta', 'd.total')
+                ->where('f.numeroFactura', $numeroFactura)
+                ->get();
+    return response()->json($consulta);
+   }
+
+   public function listarVendedores(){
+    $vendedores = DB::table('vendedor AS v')
+                  ->select('v.codVendedor', 'v.nombres', 'v.apellidos')
+                  ->get();
+    return response()->json($vendedores);
    }
 }
